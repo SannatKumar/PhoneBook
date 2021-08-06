@@ -32,9 +32,9 @@ app.get('/api/persons',(req, res) =>{
 
 app.get('/info',(req, res) =>{
     const count = Data.length
-    const currentDate= new Date()
+    const currentDate= new Date().toString()
     console.log(currentDate)
-    res.send(currentDate)
+    res.send('Phone Book has info for '+ count +' people.' + currentDate)
     //res.send('Phone Book has info for '+ count +' people.')
 })
 
