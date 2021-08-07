@@ -30,11 +30,22 @@ app.get('/api/persons',(req, res) =>{
     res.json(Data)
 })
 
+app.get('/api/persons/:id', (req, res) =>{
+    const id = Number(req.params.id)
+    const phoneBook = Data.find(phoneBook => phoneBook.id === id)
+    if(phoneBook){
+      res.json(phoneBook)
+    }else{
+      res.status(404).end()
+    }
+})
+
 app.get('/info',(req, res) =>{
     const count = Data.length
     const currentDate= new Date().toString()
     console.log(currentDate)
-    res.send('Phone Book has info for '+ count +' people.' + currentDate)
+    let str = `Phone Book has info for ${count} people. ${currentDate}`
+    res.send(str)
     //res.send('Phone Book has info for '+ count +' people.')
 })
 
