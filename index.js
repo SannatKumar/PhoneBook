@@ -56,6 +56,17 @@ app.get('/info',(req, res) =>{
     //res.send('Phone Book has info for '+ count +' people.')
 })
 
+// Delete Single data
+app.delete('/api/persons/:id', (req, res)=>{
+  const id = Number(req.params.id)
+  Data = Data.filter(phoneBook => phoneBook.id!= id)
+  
+  console.log("Deleted")
+  res.send(Data)
+
+  res.status(204).end()
+})
+
 //POrt and testing console log
 const PORT = 3001
 app.listen(PORT, ()=>{
