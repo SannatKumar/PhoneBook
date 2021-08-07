@@ -1,8 +1,12 @@
 const express = require('express')
 const app = express()
 
+
+//middlewares to pass the request
 app.use(express.json())
 
+
+//Hard coded data for the database
 let Data = [
     {
       "id": 1,
@@ -26,10 +30,12 @@ let Data = [
     }
 ]
 
+//Show All the data
 app.get('/api/persons',(req, res) =>{
     res.json(Data)
 })
 
+//Show Single data
 app.get('/api/persons/:id', (req, res) =>{
     const id = Number(req.params.id)
     const phoneBook = Data.find(phoneBook => phoneBook.id === id)
@@ -40,6 +46,7 @@ app.get('/api/persons/:id', (req, res) =>{
     }
 })
 
+//Show info and current date time
 app.get('/info',(req, res) =>{
     const count = Data.length
     const currentDate= new Date().toString()
@@ -49,6 +56,7 @@ app.get('/info',(req, res) =>{
     //res.send('Phone Book has info for '+ count +' people.')
 })
 
+//POrt and testing console log
 const PORT = 3001
 app.listen(PORT, ()=>{
     console.log(`Server running on port ${PORT}`)
